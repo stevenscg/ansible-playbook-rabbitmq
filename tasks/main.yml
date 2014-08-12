@@ -1,18 +1,13 @@
 ---
-# tasks file for rabbitmq
-- name: add the official rabbitmq repository's key
-  apt_key: url=https://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present
+# File: tasks/main.yml - Main tasks for ansible-playbook-rabbitmq
 
-- name: add the official rabbitmq repository
-  copy: src=rabbitmq.list dest=/etc/apt/sources.list.d/ backup=yes
-  register: aptrepo
+# CentOS/RHEL tasks
+- include: RedHat.yml
+  when: ansible_os_family == "RedHat"
 
-- name: refresh apt cache
-  apt: update_cache=yes
-  when: aptrepo.changed
-
-- name: install rabbitmq-server
-  apt: name=rabbitmq-server state=present
+# Debian/Ubuntu tasks
+- include: Ubuntu.yml
+  when: ansible_os_family == "Ubuntu"
 
 - name: create the ssl folder for rabbitmq
   file:

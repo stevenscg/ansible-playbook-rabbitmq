@@ -1,0 +1,22 @@
+---
+# File: tasks/RedHat.yml - CentOS/RHEL tasks for ansible-playbook-rabbitmq
+
+- name: Install erlang
+  yum:
+    name: erlang
+    state: present
+
+- name: Upload the GPG key for rabbitmq
+  copy:
+    src: RPM-GPG-KEY-rabbitmq
+    dest: /etc/pki/rpm-gpg
+
+- name: Ensure the GPG key is installed
+  rpm_key:
+    state: present
+    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-rabbitmq
+
+- name: Install rabbitmq-server
+  yum:
+  	name: http://www.rabbitmq.com/releases/rabbitmq-server/v3.3.5/rabbitmq-server-3.3.5-1.noarch.rpm
+  	state: present

@@ -1,0 +1,24 @@
+---
+# File: tasks/Ubuntu.yml - Debian/Ubuntu tasks for ansible-playbook-rabbitmq
+
+- name: add the official rabbitmq repository's key
+  apt_key:
+    url: https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+    state: present
+
+- name: add the official rabbitmq repository
+  copy:
+    src: rabbitmq.list
+    dest: /etc/apt/sources.list.d/
+    backup: yes
+  register: aptrepo
+
+- name: refresh apt cache
+  apt:
+    update_cache: yes
+  when: aptrepo.changed
+
+- name: install rabbitmq-server
+  apt:
+    name: rabbitmq-server
+    state: present
