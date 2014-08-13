@@ -1,12 +1,12 @@
 ---
-- name: ensure rabbitmq is runned
+- name: ensure rabbitmq is running
   service: name=rabbitmq-server state=started
 
 - name: add rabbitmq vhost
   rabbitmq_vhost: name={{ item }} state=present
   with_items: rabbitmq_vhost_definitions
 
-- name: add rabbitmq user and set priveleges
+- name: add rabbitmq users and set privileges
   rabbitmq_user:
     user={{ item.user }}
     password="{{ item.password }}"

@@ -3,6 +3,10 @@
 # Playbook control
 # ################
 
+# Package information (used by the RedHat tasks)
+rabbitmq_version: 3.3.5
+rabbitmq_url: http://www.rabbitmq.com/releases/rabbitmq-server/v3.3.5/rabbitmq-server-3.3.5-1.noarch.rpm
+
 # Plugins
 rabbitmq_plugins: []
 rabbitmq_new_only: 'no'

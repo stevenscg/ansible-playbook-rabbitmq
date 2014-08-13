@@ -6,10 +6,10 @@ configuration tweaking later on.
 If you wish to discuss modifications, or help to support more plateforms, open
 an issue.
 
-## Supported system
+## Supported systems
 
-Currently only Debian Jessie and Wheezy on amd64 is supported. Patch welcome to
-support other OS.
+Debian Jessie and Wheezy and RHEL6/CentOS6 on amd64 is supported.
+Patch welcome to support other OS.
 
 ### Role Variables
 
